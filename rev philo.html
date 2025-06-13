@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiches de Révision - Philosophie Bac</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .tips {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .tips h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .tips li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        .tips li::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid #667eea;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin: 0;
+            font-weight: 700;
+        }
+        .card-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: auto;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 10px;
+            padding: 8px 15px;
+            background: linear-gradient(90deg, #f8f9ff 0%, #e8ebff 100%);
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .citations-section {
+            margin-bottom: 20px;
+        }
+        .citations-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 10px;
+            padding: 8px 15px;
+            background: linear-gradient(90deg, #fffdeb 0%, #f9f9f1 100%);
+            border-radius: 8px;
+            border-left: 4px solid #f9be47;
+        }
+        .citation {
+            background: #fffde7;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 6px 0;
+            border-left: 4px solid #f9be47;
+            font-style: italic;
+            color: #6d5200;
+        }
+        .citation-source {
+            display: block;
+            text-align: right;
+            margin-top: 4px;
+            color: #b2903a;
+            font-size: 0.95em;
+            font-style: normal;
+        }
+        .definition {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4CAF50;
+        }
+        .author {
+            background: #fff8e1;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #FF9800;
+        }
+        .author-name {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 5px;
+        }
+        .example {
+            background: #f3e5f5;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9C27B0;
+        }
+        .concept-list {
+            list-style: none;
+            padding: 0;
+        }
+        .concept-list li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .concept-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close:hover {
+            color: #667eea;
+        }
+        .modal-title {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .search-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .search-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .search-box:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2rem; }
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+                padding: 20px;
+            }
+        }
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.3);
+            height: 6px;
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+        .stats {
+            text-align: center;
+            color: white;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Fiches de Révision Philosophie</h1>
+            <p class="subtitle">17 notions essentielles pour le Baccalauréat</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="stats">
+                <span id="progressText">0 / 17 notions consultées</span>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Rechercher une notion...">
+        </div>
+        <div class="tips">
+            <h2>💡 Conseils de révision</h2>
+            <ul>
+                <li><strong>Relisez régulièrement</strong> vos fiches pour ancrer les notions</li>
+                <li><strong>Lisez le soir avant de dormir</strong> - la mémoire imprègne mieux la nuit</li>
+                <li><strong>Testez-vous</strong> pour vérifier que les connaissances sont acquises</li>
+                <li><strong>Utilisez les exemples</strong> pour illustrer vos dissertations</li>
+            </ul>
+        </div>
+        <div class="grid" id="cardsGrid"></div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+    <script>
+        // === DATA ===
+        const notions = [
+            // L'Art
+            {
+                id: 1,
+                title: "L'Art",
+                definitions: [
+                    "Au <b>sens large</b> (étymologique) : capacité humaine d'agir d'après certains savoir-faire (artisanat, arts martiaux). S'identifie à la technique.",
+                    "Au <b>sens strict</b> (courant) : activité humaine qui consiste à produire des œuvres destinées à être contemplées (musique, peinture).",
+                    "L'activité artistique suppose des techniques, mais ne s'y réduit pas ; l'artiste se distingue par son <b>inventivité, créativité, ou génie</b>.",
+                    "Penser l'art selon <b>trois pôles</b> : l'œuvre d'art, le spectateur, l'artiste.",
+                    "L'<b>art contemporain</b> cherche souvent à créer un choc et à faire réfléchir sur la nature de l'art."
+                ],
+                authors: [
+                    {
+                        name: "Aristote",
+                        work: "La Poétique",
+                        idea: "L'art <b>imite la nature</b>, mais imiter ne signifie pas seulement copier. L'œuvre d'art doit <b>faire apparaître quelque chose de nouveau</b>, une <b>révélation</b> qui procure du plaisir."
+                    },
+                    {
+                        name: "Platon",
+                        work: "",
+                        idea: "L'art est une imitation du réel, nous éloignant de la vérité. <b>L'État devrait bannir les artistes de la cité</b> car ils créent des illusions."
+                    },
+                    {
+                        name: "Hegel",
+                        work: "",
+                        idea: "L'essence de l'art ne réside pas dans la reproduction du réel, mais dans l'<b>objectivation de notre vie intérieure dans l'apparence sensible</b>."
+                    },
+                    {
+                        name: "Kant",
+                        work: "",
+                        idea: "L'artiste est défini par son <b>génie</b>, une disposition innée lui permettant d'<b>inventer de nouvelles règles</b>."
+                    }
+                ],
+                citations: [
+                    { text: "L’art est l’imitation d’une imitation.", author: "Platon" },
+                    { text: "L'art imite la nature, mais il ne s'agit pas de simplement copier ; l'artiste doit \"faire apparaître quelque chose\" qui révèle une vérité, procurant ainsi un plaisir.", author: "Aristote" },
+                    { text: "L'œuvre d’art nous donne le monde dans sa vérité.", author: "Heidegger" }
+                ],
+                examples: [
+                    "<b>Les Bergers d'Arcadie</b> de Nicolas Poussin : exemple classique pour le savoir-faire des artistes, l'harmonie et la beauté.",
+                    "<b>PlayS</b> de CS : une sculpture en métal rappelant la pâte à modeler, pour questionner ce qui fait une œuvre d'art."
+                ]
+            },
+            // L'État
+            {
+                id: 2,
+                title: "L'État",
+                definitions: [
+                    "Ensemble des <b>institutions et organismes culturels</b> permettant la défense et l'administration d'une communauté humaine, ainsi que l'exercice du pouvoir sur un territoire.",
+                    "S'écrit avec un \"E\" majuscule pour le distinguer de l'état personnel.",
+                    "Opposer l'<b>État répressif</b> (qui interdit, met en prison) et l'<b>État-providence</b> (qui construit, fournit des services publics, aide les plus pauvres).",
+                    "Associé au repère <b>Public</b> par opposition à <b>Privé</b>."
+                ],
+                authors: [
+                    {
+                        name: "Hobbes",
+                        work: "",
+                        idea: "Les individus obéissent à l'État car c'est la <b>condition de leur survie</b>. Sans État, c'est la <b>guerre de tous contre tous</b>."
+                    },
+                    {
+                        name: "Rousseau",
+                        work: "Du Contrat Social, Second Discours",
+                        idea: "L'État n'est <b>pas naturel</b>. L'État a été <b>inventé</b> pour fixer des règles et organiser la vie collective. L'État doit garantir la <b>liberté politique</b>."
+                    },
+                    {
+                        name: "Mill",
+                        work: "",
+                        idea: "La seule raison légitime pour que l'État use de la force est d'<b>empêcher de nuire à autrui</b>."
+                    },
+                    {
+                        name: "Pierre Clastres",
+                        work: "",
+                        idea: "Certains peuples vivent dans des <b>sociétés sans État</b> où le chef n'a aucun pouvoir, étant un simple médiateur."
+                    }
+                ],
+                citations: [
+                    { text: "L'obéissance à l'État est la condition de notre survie.", author: "Hobbes" },
+                    { text: "L'État n'est pas du tout naturel ; il a été inventé par les humains pour fixer des règles et éviter le chaos lorsque les humains ont été contraints de vivre ensemble.", author: "Rousseau" },
+                    { text: "L’État n’est jamais aussi dangereux que lorsqu’il prétend nous rendre heureux.", author: "Tocqueville" }
+                ],
+                examples: [
+                    "Le président argentin <b>Javier Milei</b> : Son programme libertarien de <b>réduction de l'État au minimum</b> illustre la théorie de l'État minimal.",
+                    "Les lois antisémites de Nuremberg : bien que légales sous le régime nazi, elles n'étaient pas légitimes moralement."
+                ]
+            },
+            // La Conscience
+            {
+                id: 3,
+                title: "La Conscience",
+                definitions: [
+                    "<b>Sens large / spontané</b> : Fait d'<b>être éveillé</b>, présent au monde, capacité de saisir une réalité extérieure. Les animaux peuvent avoir cette conscience.",
+                    "<b>Sens philosophique / réflexif</b> : Capacité à se penser soi-même, à <b>faire retour sur ses propres états psychiques</b>. C'est la <b>conscience d'avoir une conscience</b>, le propre de l'homme.",
+                    "<b>Sens moral</b> : Capacité à <b>distinguer le bien du mal</b>, à juger et délibérer de ce qui est bien ou mal. Suppose la conscience réflexive.",
+                    "La conscience spontanée permet la réflexive, qui permet la morale.",
+                    "Liée au <b>libre arbitre</b> et à la <b>responsabilité</b>."
+                ],
+                authors: [
+                    {
+                        name: "Descartes",
+                        work: "Cogito",
+                        idea: "Mon existence en tant que conscience (le <i>cogito</i>, \"je pense donc je suis\") est la <b>seule vérité absolue et indubitable</b>."
+                    },
+                    {
+                        name: "Kant",
+                        work: "",
+                        idea: "La conscience de soi fait de l'homme une <b>personne</b> (pas une simple chose), un être moral qui a une valeur spécifique."
+                    },
+                    {
+                        name: "Rousseau",
+                        work: "Émile ou de l'éducation",
+                        idea: "La conscience est un \"<b>instinct divin</b>\", un \"guide assuré\" intérieur, le juge infaillible du bien et du mal."
+                    },
+                    {
+                        name: "Freud",
+                        work: "",
+                        idea: "La conscience n'est que la <b>partie émergée de l'esprit</b>, le moi n'est pas maître dans sa maison. Critique du cogito cartésien."
+                    }
+                ],
+                citations: [
+                    { text: "Je pense donc je suis.", author: "Descartes" },
+                    { text: "Le moi n’est pas maître dans sa propre maison.", author: "Freud" },
+                    { text: "Toute conscience […] est conscience de quelque chose.", author: "Husserl" }
+                ],
+                examples: [
+                    "<b>Déclaration de Cambridge sur la conscience (2012)</b> : De grands scientifiques ont affirmé que de <b>nombreux animaux ont une conscience</b>.",
+                    "Le \"membre fantôme\" : illustre que le corps peut surprendre la conscience."
+                ]
+            },
+            // La Justice
+            {
+                id: 4,
+                title: "La Justice",
+                definitions: [
+                    "<b>Justice comme Principe</b> : Principe moral, social et juridique qui exige que les actions humaines soient conformes à un <b>idéal d'égalité et d'ordre</b>, et de <b>donner à chacun ce qui lui est dû</b>.",
+                    "<b>Justice comme Institution</b> : Ensemble d'organismes chargés de <b>faire reconnaître et d'appliquer la loi</b>.",
+                    "Distinction entre <b>justice distributive</b> (répartir les biens) et <b>justice pénale</b> (punir les infractions).",
+                    "<b>Légal / Légitime</b> : Ce qui est légal n'est pas forcément juste d'un point de vue moral."
+                ],
+                authors: [
+                    {
+                        name: "Aristote",
+                        work: "Éthique à Nicomaque",
+                        idea: "Appliquer la loi ne suffit pas à être juste car les lois sont trop générales. Il faut l'<b>équitable</b>, une justice particulière adaptée à chaque situation."
+                    },
+                    {
+                        name: "Sophocle",
+                        work: "Antigone",
+                        idea: "La <b>justice positive (humaine) est inférieure à la justice divine</b>. L'héroïne désobéit à la loi des hommes au nom de principes moraux supérieurs."
+                    },
+                    {
+                        name: "Pascal",
+                        work: "",
+                        idea: "La justice est \"plaisante\" et relative aux frontières (\"Vérité en deçà des Pyrénées, erreur au-delà\") car les lois humaines changent géographiquement."
+                    },
+                    {
+                        name: "Hegel",
+                        work: "Principes de la philosophie du droit",
+                        idea: "Le <b>châtiment fait honneur au criminel</b> car il le reconnaît comme une conscience libre capable de réfléchir au sens de son action."
+                    }
+                ],
+                citations: [
+                    { text: "Appliquer la loi est nécessaire, mais les lois sont trop générales ; il faut aussi l'équitable.", author: "Aristote" },
+                    { text: "La justice est une plaisante justice qu'une rivière borne : vérité en deçà des Pyrénées, erreur au-delà.", author: "Pascal" },
+                    { text: "L'homme commet le bien quand il est surveillé et le mal quand il est seul.", author: "Platon (anneau de Gygès)" }
+                ],
+                examples: [
+                    "Film <b>12 hommes en colère</b> de Sidney Lumet : montre le danger d'une justice trop rapide et l'importance du doute.",
+                    "Le mythe d'<b>Antigone</b> : illustre la tension entre légalité et légitimité."
+                ]
+            },
+            // La Liberté
+            {
+                id: 5,
+                title: "La Liberté",
+                definitions: [
+                    "<b>Liberté naturelle</b> : la liberté individuelle, faire ce qu'on veut sans contrainte extérieure.",
+                    "<b>Liberté politique</b> : faire ce qu'on veut en respectant les règles sociales, sans nuire à autrui.",
+                    "<b>Liberté intérieure</b> : obéir à sa propre volonté profonde plutôt qu'à ses désirs immédiats (maîtrise de soi, autonomie).",
+                    "<b>Libre arbitre</b> : La volonté n'est pas influencée, capacité à faire des choix par soi-même."
+                ],
+                authors: [
+                    {
+                        name: "Spinoza",
+                        work: "Lettre à Schuller",
+                        idea: "Le <b>libre arbitre est une illusion</b>. Nous sommes <b>déterminés</b> par des causes que nous ignorons. La liberté consiste à <b>comprendre les causes</b> qui nous déterminent."
+                    },
+                    {
+                        name: "Sartre",
+                        work: "",
+                        idea: "L'homme est <b>condamné à être libre</b> ; il est <b>responsable de ses choix</b> même en l'absence de déterminisme. Ne pas choisir est un choix."
+                    },
+                    {
+                        name: "Descartes",
+                        work: "",
+                        idea: "Distingue la <b>liberté d'évidence</b> (choisir le meilleur parti par raison) de la <b>liberté d'indifférence</b> (choix en l'absence de vérité évidente)."
+                    },
+                    {
+                        name: "Kant",
+                        work: "",
+                        idea: "Être libre, c'est obéir à la loi morale universelle que l'on se donne par sa raison. La morale est rationnelle et universelle."
+                    }
+                ],
+                citations: [
+                    { text: "La liberté c'est juste une illusion.", author: "Spinoza" },
+                    { text: "Nous sommes condamnés à être libres.", author: "Sartre" },
+                    { text: "Agis uniquement d’après la maxime qui fait que tu peux vouloir en même temps qu’elle devienne une loi universelle.", author: "Kant" }
+                ],
+                examples: [
+                    "Le <b>transhumanisme</b> : Volonté de transformer l'être humain pour le libérer de ses limites naturelles.",
+                    "L'<b>occupation allemande</b> : Sartre dit que l'homme n'a jamais été aussi libre car les choix s'imposent dans les pires circonstances."
+                ]
+            },
+            // La Nature
+            {
+                id: 6,
+                title: "La Nature",
+                definitions: [
+                    "Tout ce qui n'est <b>pas fabriqué par les humains</b>, tout ce qui existe sans nous (arbres, ciel).",
+                    "La <b>nature humaine</b> : ce qui est naturel en nous (langage, émotions, liberté).",
+                    "S'oppose souvent à la <b>culture</b>."
+                ],
+                authors: [
+                    {
+                        name: "Aristote",
+                        work: "Physique",
+                        idea: "La nature n'est pas passive ; c'est une <b>force orientée vers un but</b>, qui \"désire\" (ex: la graine désire devenir un arbre)."
+                    },
+                    {
+                        name: "Descartes",
+                        work: "",
+                        idea: "La nature n'est plus une \"déesse\" mais est <b>totalement explicable par des principes rationnels</b>, comme un livre \"écrit en langage mathématique\"."
+                    },
+                    {
+                        name: "Rousseau",
+                        work: "",
+                        idea: "La <b>culture est un processus de dénaturation</b> de l'homme, une décadence. L'homme est bon par nature et c'est la société qui le corrompt."
+                    },
+                    {
+                        name: "Heidegger",
+                        work: "",
+                        idea: "La conception techniciste de la nature la réduit à une ressource à exploiter."
+                    }
+                ],
+                citations: [
+                    { text: "La nature n'est pas passive, mais une puissance qui désire.", author: "Aristote" },
+                    { text: "Tout est bien sortant des mains de l’Auteur des choses, tout dégénère entre les mains de l’homme.", author: "Rousseau" },
+                    { text: "La technique moderne réduit la nature à un stock de ressources disponibles.", author: "Heidegger" }
+                ],
+                examples: [
+                    "Les <b>OGM</b> et la technique CRISPR : Transformer les gènes soulève la question de ce qui est encore \"naturel\" et des dangers."
+                ]
+            },
+            // La Raison
+            {
+                id: 7,
+                title: "La Raison",
+                definitions: [
+                    "Au <b>sens intellectuel</b> : faculté de \"<b>bien juger</b>\", de distinguer le <b>vrai du faux</b> (rationalité logique).",
+                    "Au <b>sens épistémique</b> : <b>principe explicatif</b> d'une proposition, réponse à un \"pourquoi ?\".",
+                    "Au <b>sens pratique</b> : capacité à voir le <b>bien et le mal</b>, ce qui est raisonnable (raison morale).",
+                    "La raison est une <b>composante de la science</b> (Science = Raison + Expérience).",
+                    "Favorise l'<b>entente entre individus</b> car tout raisonnement logique est compréhensible par tout être doté de raison."
+                ],
+                authors: [
+                    {
+                        name: "Descartes",
+                        work: "Discours de la méthode",
+                        idea: "Tous les hommes possèdent la raison, mais il faut <b>bien l'appliquer avec une méthode</b> pour éviter l'erreur et la précipitation."
+                    },
+                    {
+                        name: "Aristote",
+                        work: "",
+                        idea: "La logique repose sur des <b>principes fondamentaux</b> (non-contradiction, tiers exclu, identité). L'homme est un \"animal politique\" car il possède la parole (<i>logos</i>)."
+                    },
+                    {
+                        name: "Kant",
+                        work: "",
+                        idea: "Il faut avoir le <b>courage de se servir de son propre entendement</b> (\"Ose savoir\"). La raison dicte la <b>loi morale universelle</b>."
+                    },
+                    {
+                        name: "Pascal",
+                        work: "Pensées",
+                        idea: "On peut connaître les choses par la raison ou par le <b>cœur</b>. \"Le cœur a ses raisons que la raison ne connaît point\"."
+                    }
+                ],
+                citations: [
+                    { text: "Ose te servir de ton entendement.", author: "Kant" },
+                    { text: "Le cœur a ses raisons que la raison ignore.", author: "Pascal" },
+                    { text: "Pour atteindre la vérité, il faut une méthode sûre et fiable.", author: "Descartes" }
+                ],
+                examples: [
+                    "Les <b>biais cognitifs</b> : Des raccourcis de notre esprit qui montrent que nous sommes moins raisonnables que nous le pensons.",
+                    "L'<b>argument ontologique de Descartes</b> pour prouver l'existence de Dieu, critiqué par Kant."
+                ]
+            },
+            // La Religion
+            {
+                id: 8,
+                title: "La Religion",
+                definitions: [
+                    "<b>Croire en Dieu</b>.",
+                    "Un <b>univers de croyances et de pratiques</b> (fêtes, pèlerinages, règles de vie).",
+                    "Une <b>communauté</b>, un groupe auquel on appartient.",
+                    "Se définit par le <b>rapport à quelque chose de sacré</b>.",
+                    "<b>Étymologie</b> : <i>religare</i> (\"relier\" - lien avec le sacré et entre individus) ou <i>relegere</i> (\"relire\" - relire les principes du culte).",
+                    "<b>Ne pas confondre foi et religion</b> : la foi est individuelle, la religion a une dimension collective."
+                ],
+                authors: [
+                    {
+                        name: "Freud",
+                        work: "L'Avenir d'une illusion",
+                        idea: "La religion est une \"<b>névrose collective</b>\" ou une \"consolation\". C'est une projection du désir enfantin d'avoir des parents tout-puissants."
+                    },
+                    {
+                        name: "Pascal",
+                        work: "",
+                        idea: "Il n'y a pas de preuves directes de l'existence de Dieu. Il faut <b>parier sur l'existence de Dieu</b> : si Dieu existe, on gagne le bonheur éternel."
+                    },
+                    {
+                        name: "Kant",
+                        work: "",
+                        idea: "On n'a <b>pas besoin de la religion pour fonder une morale</b> car la morale est rationnelle. Il est <b>impossible de démontrer l'existence de Dieu</b> par la raison."
+                    },
+                    {
+                        name: "Averroès",
+                        work: "",
+                        idea: "La <b>foi et la raison sont compatibles</b> car la vérité ne peut être contraire à la vérité."
+                    }
+                ],
+                citations: [
+                    { text: "La religion est une consolation et une névrose collective.", author: "Freud" },
+                    { text: "Il est rationnellement avantageux de parier sur l'existence de Dieu.", author: "Pascal" },
+                    { text: "Il faut maintenir une tension entre foi et raison.", author: "Ricœur" }
+                ],
+                examples: [
+                    "Film <b>Tu ne tueras point</b> : Un soldat chrétien refuse de tuer mais part au front sans armes. Conflit entre devoir de citoyen et devoir de croyant.",
+                    "Aujourd'hui, <b>85% des humains ont une religion</b>."
+                ]
+            },
+            // La Science
+            {
+                id: 9,
+                title: "La Science",
+                definitions: [
+                    "Une <b>manière de connaître les lois générales du monde</b> en se servant d'une <b>méthode</b> et en faisant des <b>expériences</b>.",
+                    "Une <b>recherche de vérité</b> qui produit de la connaissance.",
+                    "<b>3 catégories de sciences</b> : Expérimentales (physique, chimie), Déductives/formelles (maths, logique), Humaines et sociales (histoire, psychologie).",
+                    "La science se définit par l'idée de <b>méthode</b> et de <b>règles strictes</b>.",
+                    "La <b>théorie et l'expérience sont étroitement mêlées</b> dans la démarche scientifique."
+                ],
+                authors: [
+                    {
+                        name: "Karl Popper",
+                        work: "La logique de la découverte scientifique",
+                        idea: "Le critère pour savoir si une théorie est scientifique est sa <b>falsifiabilité (réfutabilité)</b>. Une affirmation scientifique doit pouvoir être testée et potentiellement réfutée."
+                    },
+                    {
+                        name: "Hume",
+                        work: "",
+                        idea: "Les <b>théories générales ne peuvent jamais être légitimées par les faits seuls</b>. Toute connaissance dégénère en probabilité."
+                    },
+                    {
+                        name: "Kuhn",
+                        work: "",
+                        idea: "L'histoire des sciences n'est <b>pas cumulative</b> mais marquée par des <b>ruptures révolutionnaires</b> (changement de <b>paradigme</b>)."
+                    },
+                    {
+                        name: "Bachelard",
+                        work: "",
+                        idea: "La science s'élabore par la <b>critique des opinions</b>."
+                    }
+                ],
+                citations: [
+                    { text: "Une théorie est scientifique si elle est réfutable.", author: "Popper" },
+                    { text: "Les théories générales ne peuvent jamais être légitimées rigoureusement par les faits seuls.", author: "Hume" },
+                    { text: "L'histoire des sciences n'est pas une accumulation cumulative de savoirs, mais est marquée par des révolutions.", author: "Kuhn" }
+                ],
+                examples: [
+                    "La <b>phrénologie</b> (19e siècle) : Prétendait expliquer les caractères par l'étude du crâne. Exemple de science qui disparaît.",
+                    "La <b>lunette astronomique de Galilée</b> : Couplage de l'expérimentation et de la technique pour démontrer l'héliocentrisme."
+                ]
+            },
+            // La Technique
+            {
+                id: 10,
+                title: "La Technique",
+                definitions: [
+                    "Au <b>sens large</b> : <b>Savoir-faire technique</b>, habilité. Activité visant un résultat, requérant talent et observation de règles.",
+                    "Au <b>sens strict</b> : Les <b>objets techniques</b> (Internet, vaccins).",
+                    "La technique engendre une conception purement <b>quantitative</b> de la réussite et du bonheur.",
+                    "La connaissance scientifique est corrélée à l'état de développement des <b>instruments techniques de mesure</b>."
+                ],
+                authors: [
+                    {
+                        name: "Platon",
+                        work: "Mythe de Prométhée",
+                        idea: "La <b>puissance technique humaine est une réaction à notre impuissance naturelle</b>. Prométhée vole le feu et le savoir-faire technique pour les humains nus et fragiles."
+                    },
+                    {
+                        name: "Marcuse",
+                        work: "",
+                        idea: "Le développement de la technique engendre une <b>technocratie</b> qui affaiblit les institutions démocratiques. L'objet technique acquiert une existence autonome."
+                    },
+                    {
+                        name: "Gorgias",
+                        work: "",
+                        idea: "La technique est un <b>instrument neutre</b> ; chaque homme est responsable de son usage."
+                    },
+                    {
+                        name: "Heidegger",
+                        work: "",
+                        idea: "La technique moderne est une manière d'être au monde qui réduit la nature à une ressource exploitable."
+                    }
+                ],
+                citations: [
+                    { text: "La puissance technique humaine est une réaction à notre impuissance naturelle.", author: "Platon" },
+                    { text: "La technique moderne réduit la nature à un stock de ressources disponibles.", author: "Heidegger" },
+                    { text: "La technique est un simple moyen et est neutre moralement.", author: "Gorgias" }
+                ],
+                examples: [
+                    "La <b>technique du tourage</b> en cuisine pour les croissants : illustre le savoir-faire avec des règles, la répétition de gestes et l'apprentissage.",
+                    "Les <b>OGM</b> : peuvent servir à illustrer le progrès technique et ses limites."
+                ]
+            },
+            // La Vérité
+            {
+                id: 11,
+                title: "La Vérité",
+                definitions: [
+                    "<b>Vérité-correspondance</b> : Adéquation entre une <b>proposition/discours/pensée et la réalité</b>. Le contraire n'est pas le mensonge mais la fausseté.",
+                    "<b>Vérité-cohérence / formelle</b> : Cohérence logique entre les éléments d'un raisonnement.",
+                    "<b>Vérité-évidence</b> : Principe qui ne se démontre pas mais est <b>immédiatement connu comme vrai</b>.",
+                    "<b>Vérité-dévoilement</b> (Heidegger) : La façon dont l'homme établit les choses dans leur présence.",
+                    "La science est une <b>combinaison de ces trois formes de vérité</b>."
+                ],
+                authors: [
+                    {
+                        name: "Platon",
+                        work: "Allégorie de la caverne",
+                        idea: "Les hommes sont spontanément dans une <b>ignorance radicale</b>, percevant des ombres (opinions) plutôt que la vérité (Idées)."
+                    },
+                    {
+                        name: "Kant",
+                        work: "Critique de la raison pratique",
+                        idea: "La <b>vérité est la valeur la plus importante au monde</b>, supérieure au bonheur ou à la justice. Il faut <b>toujours dire la vérité</b>."
+                    },
+                    {
+                        name: "Protagoras",
+                        work: "",
+                        idea: "\"<b>L'homme est la mesure de toute chose</b>\". Il n'existe <b>aucune vérité absolue</b> ; tout est relatif."
+                    },
+                    {
+                        name: "Hume",
+                        work: "",
+                        idea: "Toute connaissance \"dégénère en probabilité\"."
+                    }
+                ],
+                citations: [
+                    { text: "La vérité est la valeur la plus importante au monde.", author: "Kant" },
+                    { text: "Les hommes sont spontanément plongés dans une ignorance radicale.", author: "Platon" },
+                    { text: "L’homme est la mesure de toute chose.", author: "Protagoras" }
+                ],
+                examples: [
+                    "L'histoire vraie de <b>Jean-Claude Romand</b> : a menti sur sa profession et sa vie, tuant sa famille quand ses mensonges ont été révélés.",
+                    "L'histoire du <b>\"garçon qui criait au loup\"</b> : illustre la perte de confiance engendrée par le mensonge."
+                ]
+            },
+            // Le Bonheur
+            {
+                id: 12,
+                title: "Le Bonheur",
+                definitions: [
+                    "Un <b>état de satisfaction durable</b>. Se distingue du plaisir, qui est éphémère.",
+                    "L'étymologie de \"bonheur\" signifie \"bonne heure\", suggérant que les gens heureux sont chanceux."
+                ],
+                authors: [
+                    {
+                        name: "Épicure",
+                        work: "",
+                        idea: "La recherche du bonheur implique la <b>recherche de la sagesse</b> et le <b>bon usage de la raison</b>. L'ataraxie est l'absence de troubles de l'âme."
+                    },
+                    {
+                        name: "Kant",
+                        work: "Fondements de la métaphysique des mœurs",
+                        idea: "Le bonheur est une <b>idée indéterminée, vague, un idéal de l'imagination</b> (un rêve)."
+                    },
+                    {
+                        name: "Rousseau",
+                        work: "Les Confessions",
+                        idea: "Le <b>délire nous rend heureux</b> ; si la satisfaction met fin au désir, elle ne nous apporte pas le bonheur."
+                    },
+                    {
+                        name: "Platon",
+                        work: "",
+                        idea: "Le bonheur correspond à une <b>harmonie entre les trois instances de l'âme</b> où la raison discipline les passions."
+                    }
+                ],
+                citations: [
+                    { text: "Le bonheur est une idée indéterminée, un rêve ou un idéal de l'imagination.", author: "Kant" },
+                    { text: "La recherche du bonheur implique la recherche de la sagesse et l'exercice vigilant de notre raison.", author: "Épicure" },
+                    { text: "Malheur à qui n'a plus rien à désirer.", author: "Rousseau" }
+                ],
+                examples: [
+                    "<b>Rousseau aux Charmettes</b> : Un exemple de bonheur simple, une vie jeune et insouciante."
+                ]
+            },
+            // Le Devoir
+            {
+                id: 13,
+                title: "Le Devoir",
+                definitions: [
+                    "<b>Nécessité de faire quelque chose</b>.",
+                    "<b>Obligation</b> : libre de faire un choix, contrairement à la contrainte.",
+                    "<b>Devoirs légaux</b> (lois civiles), <b>devoirs sociaux</b> (règles de société), <b>devoirs moraux</b> (faire le bien).",
+                    "<b>Contrainte vs Obligation</b> : L'obligation morale implique toujours le choix, elle est rationnelle et universelle."
+                ],
+                authors: [
+                    {
+                        name: "Kant",
+                        work: "",
+                        idea: "Le <b>devoir moral est absolu</b> et <b>supérieur à tous les autres</b>. Impératif catégorique : agir de manière à ce que la maxime de l'action puisse devenir une loi universelle."
+                    },
+                    {
+                        name: "Rousseau",
+                        work: "Émile",
+                        idea: "Nous avons en nous une <b>voix intérieure, la voix du devoir moral</b>."
+                    },
+                    {
+                        name: "Freud",
+                        work: "",
+                        idea: "Critiqué la vision kantienne du devoir. Il faut se méfier du Surmoi qui censure constamment."
+                    },
+                    {
+                        name: "Hegel",
+                        work: "",
+                        idea: "La morale ne se réduit pas à sa forme logique ; elle consiste à faire vivre les <b>règles particulières de la communauté</b>."
+                    }
+                ],
+                citations: [
+                    { text: "L'impératif moral est catégorique et inconditionnel.", author: "Kant" },
+                    { text: "Chacun a le devoir absolu de penser son action.", author: "Arendt" },
+                    { text: "La voix du devoir moral est l'arbitre infaillible du bien et du mal à l'intérieur de nous.", author: "Rousseau" }
+                ],
+                examples: [
+                    "Film <b>Tu ne tueras point</b> : Montre un conflit entre le devoir de citoyen (combattre) et le devoir de croyant (ne pas tuer).",
+                    "Mentir à sa copine : l'action est autorisée pour soi mais non universalisable car cela détruirait la confiance."
+                ]
+            },
+            // Le Langage
+            {
+                id: 14,
+                title: "Le Langage",
+                definitions: [
+                    "Capacité à <b>exprimer une pensée ou à communiquer au moyen d'un système de signes</b>.",
+                    "Le langage n'implique pas toujours la parole (ex: langue des signes).",
+                    "Différence entre <b>langue</b> (système de signes particulier) et <b>langage</b> (capacité générale).",
+                    "Le langage sert aussi à <b>faire des choses</b> (actes de langage)."
+                ],
+                authors: [
+                    {
+                        name: "Austin",
+                        work: "Quand dire c'est faire",
+                        idea: "Le langage ne sert pas seulement à décrire le monde, mais aussi à <b>réaliser des actions</b> (donner un ordre, insulter, ouvrir un procès)."
+                    },
+                    {
+                        name: "Hegel",
+                        work: "",
+                        idea: "Une pensée réelle s'incarne dans le mot ; l'intelligence se remplit de mots et de la nature des choses."
+                    },
+                    {
+                        name: "Bergson",
+                        work: "",
+                        idea: "Le langage ne peut exprimer la singularité des choses et des états d'âme, car les mots désignent des genres."
+                    },
+                    {
+                        name: "Mallarmé",
+                        work: "",
+                        idea: "Distingue l'usage utilitaire du langage (coexistence) et l'usage essentiel (poésie, idéalisation de l'objet)."
+                    }
+                ],
+                citations: [
+                    { text: "Le langage humain est le signe de la pensée.", author: "Descartes" },
+                    { text: "C’est dans les mots que nous pensons.", author: "Hegel" },
+                    { text: "Les mots sont des étiquettes grossières qui nous masquent la réalité.", author: "Bergson" }
+                ],
+                examples: [
+                    "Le singe bonobo <b>Kanzi</b> : A appris à communiquer avec des symboles, expliquant ce qu'il veut, et même mentant ou faisant des blagues."
+                ]
+            },
+            // Le Temps
+            {
+                id: 15,
+                title: "Le Temps",
+                definitions: [
+                    "Une <b>dimension du réel</b> qui rend possible et compréhensible le <b>changement</b>.",
+                    "<b>Temps objectif / chronos</b> : linéaire, homogène, mesurable en unités égales.",
+                    "<b>Temps subjectif / durée vécue</b> : expérience intérieure, reflète la façon dont nous ressentons le temps.",
+                    "<b>Kairos</b> : le bon moment pour agir.",
+                    "<b>Aion</b> : l'éternité, le temps absolu."
+                ],
+                authors: [
+                    {
+                        name: "Sénèque",
+                        work: "De la brièveté de la vie",
+                        idea: "Le problème dans la vie est que l'on <b>perd du temps</b> à des futilités ou à la manie du travail. Le temps est la seule chose qui nous appartient vraiment."
+                    },
+                    {
+                        name: "Pascal",
+                        work: "",
+                        idea: "L'homme ne peut être heureux car il ne sait pas vivre dans le présent."
+                    },
+                    {
+                        name: "Bergson",
+                        work: "Essai sur les données immédiates de la conscience",
+                        idea: "La conscience est la <b>saisie pure du temps qui s'écoule, de la durée</b>."
+                    },
+                    {
+                        name: "Jonas",
+                        work: "",
+                        idea: "Le développement technique implique une <b>responsabilité envers l'avenir de l'humanité</b>."
+                    }
+                ],
+                citations: [
+                    { text: "Qu'est-ce-que le temps ? Si personne ne me le demande, je le sais. Si je veux l'expliquer à qui me le demande, je ne le sais plus.", author: "Saint Augustin" },
+                    { text: "L'homme ne peut pas être heureux car il ne sait pas vivre dans le présent.", author: "Pascal" },
+                    { text: "Les hommes perdent du temps dans des activités futiles et l'oisiveté.", author: "Sénèque" }
+                ],
+                examples: [
+                    "L'<b>accélération sociale du temps</b> : Pression pour vivre le plus de choses possible rapidement (fast-food, speed dating, formats courts sur internet)."
+                ]
+            },
+            // Le Travail
+            {
+                id: 16,
+                title: "Le Travail",
+                definitions: [
+                    "Au <b>sens large</b> (philosophique) : toute activité humaine, manuelle et/ou intellectuelle, visant un <b>résultat déterminé</b>.",
+                    "Au <b>sens strict</b> (courant) : activité professionnelle rémunérée et régulière.",
+                    "Distinction entre le <b>travail</b> (activité non que pénible, épanouissante) et le <b>labeur</b> (pénible, non-épanouissante).",
+                    "<b>Travail physique</b> vs <b>travail intellectuel</b>.",
+                    "<b>Travail émotionnel</b> : Efforts pour encourager, consoler, sourire à un client, etc."
+                ],
+                authors: [
+                    {
+                        name: "Marx",
+                        work: "Le Capital",
+                        idea: "Le travail est <b>fondamental pour l'humanité</b> ; les humains adaptent le monde à eux en travaillant. Mais le travail peut devenir <b>inhumain</b>."
+                    },
+                    {
+                        name: "Hegel",
+                        work: "Dialectique du maître et de l'esclave",
+                        idea: "C'est dans l'expérience du travail que nous pouvons <b>nous approprier nos puissances de penser et d'agir</b>."
+                    },
+                    {
+                        name: "Nietzsche",
+                        work: "",
+                        idea: "Le travail moderne <b>abrutit le travailleur</b> en le privant de liberté et d'individualité."
+                    },
+                    {
+                        name: "Crawford",
+                        work: "Éloge du carburateur",
+                        idea: "Le travailleur manuel doit inventer des solutions aux \"casse-tête\" du réel, impliquant calcul et inventivité."
+                    }
+                ],
+                citations: [
+                    { text: "Le travail est vraiment important pour nous les humains.", author: "Marx" },
+                    { text: "Le travail permet à l'homme de dominer la nature en la transformant grâce à notre esprit.", author: "Hegel" },
+                    { text: "Le travail est présenté à la fois comme une tâche donnée par Dieu et comme une punition après la Chute.", author: "La Genèse" }
+                ],
+                examples: [
+                    "Le récit de la <b>Genèse (Adam et Ève)</b> : Le travail est d'abord une tâche agréable puis une <b>souffrance et une punition</b> après la chute.",
+                    "L'<b>écrivain Balzac</b> : Son travail d'écriture implique de nombreuses manipulations, illustrant le travail intellectuel."
+                ]
+            },
+            // L'Inconscient
+            {
+                id: 17,
+                title: "L'Inconscient",
+                definitions: [
+                    "Au <b>sens courant</b> : agir sans avoir fait attention à des choses importantes.",
+                    "Au <b>sens philosophique (fort)</b> : ensemble des <b>pensées qui sont dans l'esprit sans être dans la conscience</b>.",
+                    "<b>2 aspects de l'inconscient</b> : ce qu'on perçoit sans le savoir ; désirs refoulés (psychanalyse).",
+                    "Les sujets sur l'inconscient interrogent souvent la <b>morale</b> ou la <b>liberté</b>."
+                ],
+                authors: [
+                    {
+                        name: "Freud",
+                        work: "Le Moi et le Ça",
+                        idea: "L'inconscient est un <b>réservoir de pulsions (le Ça)</b>, des désirs bruts, aveugles, qui sont refoulés car incompatibles avec les exigences morales et sociales."
+                    },
+                    {
+                        name: "Leibniz",
+                        work: "",
+                        idea: "L'inconscient est fait de \"<b>petites perceptions</b>\" dont on n'est pas conscient individuellement mais qui s'assemblent."
+                    },
+                    {
+                        name: "Bergson",
+                        work: "",
+                        idea: "L'inconscient mémoriel contient les souvenirs préconscients ou virtuels, prêts à être actualisés."
+                    },
+                    {
+                        name: "Bourdieu",
+                        work: "",
+                        idea: "Nos façons de penser et d'agir sont profondément structurées par notre <b>milieu social</b> (<b>Habitus</b>)."
+                    }
+                ],
+                citations: [
+                    { text: "Le moi n’est pas maître dans sa propre maison.", author: "Freud" },
+                    { text: "L'inconscient n'existe pas ou, s'il existe, il ne nous détermine pas, c’est une excuse, une mauvaise fois.", author: "Sartre" },
+                    { text: "La psychanalyse est une fausse science car elle est irréfutable.", author: "Popper" }
+                ],
+                examples: [
+                    "<b>Vision aveugle</b> : Des aveugles peuvent montrer l'emplacement d'une tâche de lumière sans la voir consciemment.",
+                    "Le cas d'<b>Emma</b> (patiente de Freud) : Sa phobie des magasins est expliquée par un traumatisme sexuel refoulé.",
+                    "Les <b>lapsus</b> et les <b>actes manqués</b> : Expressions involontaires de pulsions refoulées."
+                ]
+            }
+        ];
+        // ==== END DATA ====
+
+        // === RENDER CARDS ===
+        const cardsGrid = document.getElementById('cardsGrid');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        let consulted = new Set();
+
+        function renderCards(notionsArray) {
+            cardsGrid.innerHTML = '';
+            notionsArray.forEach(notion => {
+                const card = document.createElement('div');
+                card.className = "card";
+                card.setAttribute('data-id', notion.id);
+                card.innerHTML = `
+                  <div class="card-header">
+                    <div class="card-title">${notion.title}</div>
+                    <div class="card-number">${notion.id}</div>
+                  </div>
+                  <div class="section">
+                    <div class="section-title">Définitions & concepts clés</div>
+                    <ul class="concept-list">
+                        ${notion.definitions.map(d => `<li>${d}</li>`).join('')}
+                    </ul>
+                  </div>
+                `;
+                card.addEventListener('click', () => openModal(notion.id));
+                cardsGrid.appendChild(card);
+            });
+        }
+
+        // === MODAL ===
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modalContent');
+        const closeBtn = document.querySelector('.close');
+
+        function openModal(id) {
+            const notion = notions.find(n => n.id === Number(id));
+            if(!consulted.has(id)) {
+                consulted.add(id);
+                updateProgress();
+            }
+            modalContent.innerHTML = `
+                <div class="modal-title">${notion.title}</div>
+                <div class="section">
+                    <div class="section-title">Définitions & concepts clés</div>
+                    <ul class="concept-list">
+                        ${notion.definitions.map(d => `<li>${d}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="citations-section">
+                    <div class="citations-title">Citations</div>
+                    ${notion.citations ? notion.citations.map(c => `<div class="citation">"${c.text}"<span class="citation-source">— ${c.author}</span></div>`).join('') : ""}
+                </div>
+                <div class="section">
+                    <div class="section-title">Auteurs & idées principales</div>
+                    ${notion.authors.map(a => `
+                        <div class="author">
+                            <span class="author-name">${a.name}${a.work ? " <i>("+a.work+")</i>" : ""}</span><br>
+                            ${a.idea}
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="section">
+                    <div class="section-title">Exemples</div>
+                    ${notion.examples.map(ex => `<div class="example">${ex}</div>`).join('')}
+                </div>
+            `;
+            modal.style.display = "block";
+        }
+
+        closeBtn.onclick = function() { modal.style.display = "none"; }
+        window.onclick = function(event) { if(event.target == modal) modal.style.display = "none"; }
+
+        // === SEARCH ===
+        const searchBox = document.getElementById('searchBox');
+        searchBox.addEventListener('input', function() {
+            const val = this.value.toLowerCase();
+            renderCards(notions.filter(n => n.title.toLowerCase().includes(val)));
+        });
+
+        // === PROGRESS BAR ===
+        function updateProgress() {
+            let percent = Math.round(consulted.size / notions.length * 100);
+            progressFill.style.width = percent + "%";
+            progressText.innerText = `${consulted.size} / ${notions.length} notions consultées`;
+        }
+
+        // === INIT ===
+        renderCards(notions);
+        updateProgress();
+    </script>
+</body>
+</html>
